@@ -18,7 +18,7 @@ function App() {
     
   }
 
-  const removeTask = () => {
+  const undoTask = () => {
     let dataArray = [];
 
     for(let i = 0; i < data.length; i++){
@@ -30,19 +30,18 @@ function App() {
 
   }
 
-  const undoTask = (j) => {
+  const removeTask = (j) => {
     let dataArray = [];
     
     for (let i = 0; i < data.length ; i++){
-      if (i === j){
-        continue;
-      }
-      else {
-        dataArray[i] = data[i];
-      }
+      dataArray[i] = data[i];
     }
 
+    dataArray.splice(j, 1)
+
+    console.log(dataArray);
     setData(dataArray);
+    console.log(dataArray);
   }
 
   // function addItem(item, d){
@@ -51,12 +50,12 @@ function App() {
   return (
     <div className="App">
       <ul>
-        {data.map((elem, j) =>(<li key={j}>{elem}<button onClick={() => {undoTask(j)}}>Undo Task</button></li>))}
+        {data.map((elem, j) =>(<li key={j}>{elem}<button onClick={() => {removeTask(j)}}>X</button></li>))}
       </ul>
     <input name="task" type="text" onChange={(event) => setTask(event.target.value)} 
     value={task}/>
     <button onClick={addTask}>Add Task</button>
-    <button onClick={removeTask}>Remove Task</button>
+    <button onClick={undoTask}>Undo Task</button>
     </div>
   );
 }
