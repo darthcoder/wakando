@@ -44,9 +44,7 @@ function App() {
     console.log(dataArray);
   }
 
-  // function addItem(item, d){
-  //   return d.push(item);
-  // }
+
   return (
     <div className="App">
       <ul>
